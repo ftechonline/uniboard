@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        var btnInput = findViewById<Button>(R.id.btnInput)
+        var btnLogic = findViewById<Button>(R.id.btnLogic)
 
-        btnInput.setOnClickListener {
-            val intent = Intent(baseContext, InputActivity::class.java)
+        btnLogic.setOnClickListener {
+            val intent = Intent(baseContext, ConditionBuilder::class.java)
             startActivity(intent);
         }
 
