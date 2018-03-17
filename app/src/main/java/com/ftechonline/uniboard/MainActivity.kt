@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatImageView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        var btnLogic = findViewById<Button>(R.id.btnLogic)
+        var btnLogic = findViewById<AppCompatImageView>(R.id.btnLogic)
 
         btnLogic.setOnClickListener {
             val intent = Intent(baseContext, ConditionBuilder::class.java)

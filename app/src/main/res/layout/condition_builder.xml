@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
@@ -11,46 +12,141 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="24dp"
-        android:text="Condition Builder" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp"
+        android:capitalize="words"
+        android:text="Condition Builder"
+        android:textColor="@color/colorPrimaryDark" />
 
-    <Spinner
-        android:id="@+id/spInput"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="42dp" />
+        android:orientation="horizontal">
 
-    <Spinner
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".28"
+            android:background="@drawable/background"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spInput1"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@mipmap/drop" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".28"
+            android:background="@drawable/background"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spLogic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@mipmap/drop" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".28"
+            android:background="@drawable/background"
+            android:orientation="horizontal">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/spInput2"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/transparent"
+                android:text="" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/drop" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+    <!--<Spinner
         android:id="@+id/spLogic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/spInput"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="41dp" />
+        android:layout_marginTop="42dp"
+        android:background="@android:drawable/progress_horizontal"
+        android:elevation="2dp" />-->
 
-    <AutoCompleteTextView
-        android:id="@+id/spInput2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spLogic"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="39dp"
-        android:text="" />
+
+
+    <!--<AutoCompleteTextView-->
+        <!--android:id="@+id/spInput2"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:layout_marginRight="30dp"-->
+        <!--android:layout_marginTop="42dp"-->
+        <!--android:background="@android:drawable/progress_horizontal"-->
+        <!--android:text="" />-->
 
     <Button
         android:id="@+id/btnApply"
@@ -58,36 +154,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/spInput2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="Apply" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="270dp"
+        android:background="@color/colorPrimary"
+        android:text="Apply"
+        android:textColor="@android:color/white"
+        android:typeface="sans"
+        tools:background="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spInput"
-        android:layout_alignStart="@+id/spInput"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="17dp"
-        android:text="Input 1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spLogic"
-        android:layout_alignStart="@+id/spLogic"
-        android:layout_below="@+id/spInput"
-        android:layout_marginTop="16dp"
-        android:text="Logic / Operator" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spInput2"
-        android:layout_alignStart="@+id/spInput2"
-        android:layout_below="@+id/spLogic"
-        android:layout_marginTop="16dp"
-        android:text="Input2 / Constant" />
-</RelativeLayout>
+</LinearLayout>

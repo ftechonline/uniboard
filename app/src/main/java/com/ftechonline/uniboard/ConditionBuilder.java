@@ -6,14 +6,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 /**
  * Created by sreehari on 17/3/18.
@@ -36,18 +38,18 @@ public class ConditionBuilder extends Activity implements View.OnClickListener{
 
         setContentView(R.layout.condition_builder);
 
-        spInput = findViewById(R.id.spInput);
+        spInput = findViewById(R.id.spInput1);
         spLogic = findViewById(R.id.spLogic);
         spInput2 = findViewById(R.id.spInput2);
         btnApply = findViewById(R.id.btnApply);
         btnApply.setOnClickListener(this);
 
-        String[] inputSpinner = new String[]{"--select--","IN01 - LDR ","IN02 - PIR"};
+        String[] inputSpinner = new String[]{"--select--","LDR","PIR"};
         ArrayAdapter<String> spInputAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, inputSpinner);
         spInputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spInput.setAdapter(spInputAdapter);
 
-        String[] logicSpinner = new String[]{"--select--","<","<=","=",">=",">","<>"};
+        String[] logicSpinner = new String[]{"--select--","ABOVE","BELOW","EQUALS"};
         ArrayAdapter<String> spLogicAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, logicSpinner);
         spLogicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLogic.setAdapter(spLogicAdapter);
@@ -64,13 +66,20 @@ public class ConditionBuilder extends Activity implements View.OnClickListener{
 
                     Long selectedId = spInput.getSelectedItemId();
                     String condition ="";
-                    if(selectedId.equals(1)){
+                    if(selectedId == 1){
                         condition += "analogValue";
                     }else{
                         condition += "digitalValue";
                     }
 
-                    condition += spLogic.getSelectedItem().toString();
+                    switch(spLogic.getSelectedItem().toString()){
+
+                        case "ABOVE" : condition += ">"; break;
+                        case "BELOW" : condition += "<"; break;
+                        case "EQUALS" : condition += "="; break;
+                        default: condition += "<>"; break;
+
+                    }
                     condition += spInput2.getText();
 
                     Toast.makeText(ConditionBuilder.this, condition, Toast.LENGTH_SHORT).show();
@@ -89,7 +98,10 @@ public class ConditionBuilder extends Activity implements View.OnClickListener{
                         }
                     });
 
+                    RequestQueue requestQueue = Volley.newRequestQueue(this);
+                    requestQueue.add(request);
             }
+
 
         }
 
