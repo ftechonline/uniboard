@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,21 +37,23 @@ public class ConditionBuilder extends Activity implements View.OnClickListener{
 
         setContentView(R.layout.condition_builder);
 
-        spInput = findViewById(R.id.spInput1);
+        spInput = findViewById(R.id.spInput);
         spLogic = findViewById(R.id.spLogic);
         spInput2 = findViewById(R.id.spInput2);
         btnApply = findViewById(R.id.btnApply);
         btnApply.setOnClickListener(this);
 
-        String[] inputSpinner = new String[]{"--select--","LDR","PIR"};
-        ArrayAdapter<String> spInputAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, inputSpinner);
-        spInputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spInput.setAdapter(spInputAdapter);
+        String[] input1Spinner = new String[]{"--select--","LDR","PIR"};
+        ArrayAdapter<String> spInput1Adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, input1Spinner);
+        spInput1Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spInput.setAdapter(spInput1Adapter);
 
         String[] logicSpinner = new String[]{"--select--","ABOVE","BELOW","EQUALS"};
         ArrayAdapter<String> spLogicAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, logicSpinner);
         spLogicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLogic.setAdapter(spLogicAdapter);
+
+
 
     }
 
