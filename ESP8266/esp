@@ -1,0 +1,85 @@
+const char* ssid = "harisree";
+const char* password = "harisree";
+
+void setup () {
+  
+ 
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print("Connecting..");
+    }
+
+  pinMode(5, INPUT);  // input digital pin
+  pinMode(13, OUTPUT);
+  pinMode(14, OUTPUT);  
+}
+ 
+void loop() 
+{
+
+  int bd=001;
+  int av=5;
+  int dv=0;
+  String payload;
+  av = analogRead(A0);
+  dv = digitalRead(5);
+   Serial.println();
+  Serial.print("analog value : ");
+  Serial.println(av);
+  Serial.print("digital value : ");
+  Serial.println(dv);
+  delay(1000);
+
+  if (WiFi.status() == WL_CONNECTED) 
+  { //Check WiFi connection status
+ 
+    HTTPClient http;  //Declare an object of class HTTPClient
+
+    Serial.println("sending value to server.....");
+    http.begin("http://192.168.43.47/uniboard/put.php?boardId="+String(bd)+"&aValue=0&dValue="+String(dv));  //Specify request destination
+    int httpCode = http.GET();                                                                  //Send the request
+ 
+    if (httpCode > 0) { //Check the returning code
+ 
+      payload = http.getString();   //Get the request response payload
+      Serial.println(payload);                     //Print the response payload
+ 
+    }
+ 
+    http.end();   //Close connection
+ 
+  }
+ 
+  if(payload == "01")
+  {
+    digitalWrite(13, 1);
+    digitalWrite(14, 0);
+    Serial.println(" Relay 1 : ON"); 
+    Serial.println(" Relay 2 : OFF"); 
+  }
+  else if(payload == "10")
+  {
+    digitalWrite(13, 0);
+    digitalWrite(14, 1);
+    Serial.println(" Relay 1 : OFF"); 
+    Serial.println(" Relay 2 : ON"); 
+  }
+  else if(payload == "11") 
+   {
+    digitalWrite(13, 1);
+    digitalWrite(14, 1);
+    Serial.println(" Relay 1 : ON"); 
+    Serial.println(" Relay 2 : ON"); 
+   }
+   else
+   {
+    digitalWrite(13, 0);
+    digitalWrite(14, 0);
+    Serial.println(" Relay 1 : OFF"); 
+    Serial.println(" Relay 2 : OFF");   
+    }
+
+    delay(100); 
+}
